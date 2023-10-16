@@ -1,0 +1,11 @@
+.Notifications {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+
+  &__actions {
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+}

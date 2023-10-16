@@ -1,0 +1,17 @@
+.NotificationItem {
+  display: flex;
+  gap: 8px;
+  padding: 16px 16px !important;
+
+  &__title {
+    font-weight: bold;
+  }
+
+  &:hover {
+    background-color: #0000000b !important;
+  }
+
+  &__notRead {
+    background-color: #00000024 !important;
+  }
+}
