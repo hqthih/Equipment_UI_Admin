@@ -49,7 +49,7 @@ const Notification = ({ anchorEl, handleClose, notifications }: IProps) => {
       style={{ right: "100px" }}
     >
       <div className="Notifications">
-        {notifications.length && (
+        {!!notifications.length && (
           <div className="Notifications__actions">
             <div className="Notifications__clear">
               <a href="#" onClick={handleClearAll} aria-disabled>

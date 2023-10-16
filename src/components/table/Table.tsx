@@ -213,12 +213,12 @@ export const equipmentColumn: GridColDef[] = [
   {
     field: "name",
     headerName: "Name",
-    width: 200,
+    width: 150,
   },
   {
     field: "type",
     headerName: "Type",
-    width: 100,
+    width: 150,
     renderCell: (params: GridRenderCellParams<IEquipmentDetail>) => (
       <TypeColumn categoryId={params.value} />
     ),
