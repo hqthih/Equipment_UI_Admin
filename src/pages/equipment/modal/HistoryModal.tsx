@@ -5,6 +5,7 @@ import Table, {
   userColumn,
 } from "../../../components/table/Table";
 import { TRootState } from "../../../stores/reducers";
+import { EEquipmentActions } from "../../../stores/actions/equipment-actions/constants";
 
 interface IHistoryModalProps {
   isOpenModal: boolean;
@@ -20,6 +21,10 @@ const HistoryModal = ({
   const userData = useSelector(
     (state: TRootState) => state.equipment.historyTableData
   );
+  const loading = useSelector(
+    (state: TRootState) =>
+      state.loading[EEquipmentActions.HISTORY_TRANSFER_EQUIPMENT]
+  );
 
   return (
     <Modal
@@ -30,7 +35,12 @@ const HistoryModal = ({
       title="History transferred user modal"
     >
       <div>
-        <Table columns={historyColumn} rows={userData} notCheckBoxSelection />
+        <Table
+          columns={historyColumn}
+          rows={userData}
+          notCheckBoxSelection
+          isLoading={loading}
+        />
       </div>
     </Modal>
   );
