@@ -1,9 +1,11 @@
 import { IGetEquipmentRequest } from "../../../interfaces/equipment-interface";
+import { IUserDetail } from "../../../interfaces/user-interfaces";
 import { EEquipmentActions } from "./constants";
 import {
   TCreateEquipmentAction,
   TDeleteEquipmentAction,
   TGetEquipmentAction,
+  THistoryTransferEquipmentAction,
   TUpdateEquipmentAction,
 } from "./types";
 
@@ -91,5 +93,28 @@ export const deleteEquipmentSuccessAction = () => ({
 
 export const deleteEquipmentFailureAction = (error: any) => ({
   type: EEquipmentActions.DELETE_EQUIPMENT_FAILURE,
+  payload: error,
+});
+
+export const historyTransferEquipmentAction = (
+  payload: number
+): THistoryTransferEquipmentAction => ({
+  type: EEquipmentActions.HISTORY_TRANSFER_EQUIPMENT,
+  payload,
+});
+
+export const historyTransferEquipmentRequestAction = () => ({
+  type: EEquipmentActions.HISTORY_TRANSFER_EQUIPMENT_REQUEST,
+});
+
+export const historyTransferEquipmentSuccessAction = (
+  payload: IUserDetail[]
+) => ({
+  payload,
+  type: EEquipmentActions.HISTORY_TRANSFER_EQUIPMENT_SUCCESS,
+});
+
+export const historyTransferEquipmentFailureAction = (error: any) => ({
+  type: EEquipmentActions.HISTORY_TRANSFER_EQUIPMENT_FAILURE,
   payload: error,
 });

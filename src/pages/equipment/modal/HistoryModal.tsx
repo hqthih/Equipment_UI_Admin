@@ -17,10 +17,8 @@ const HistoryModal = ({
   onCloseModal,
   transferredUserIds,
 }: IHistoryModalProps) => {
-  const userData = useSelector((state: TRootState) =>
-    state.user.users.filter((user) =>
-      transferredUserIds.some((id: number) => id === user.id)
-    )
+  const userData = useSelector(
+    (state: TRootState) => state.equipment.historyTableData
   );
 
   return (

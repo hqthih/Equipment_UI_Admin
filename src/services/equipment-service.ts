@@ -44,3 +44,10 @@ export const deleteEquipment = async (payload: number[]) => {
 
   return response.data;
 };
+
+export const historyTransferEquipment = async (payload: number) => {
+  const response = await ApiClient.get(
+    `/equipment/get-transfered-user?equipmentId=${payload}`
+  );
+  return response.data;
+};

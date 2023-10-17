@@ -21,6 +21,7 @@ import EquipmentModal from "../../pages/equipment/modal/EquipmentModal";
 import HistoryModal from "../../pages/equipment/modal/HistoryModal";
 import {
   getEquipmentAction,
+  historyTransferEquipmentAction,
   updateEquipmentAction,
 } from "../../stores/actions/equipment-actions";
 import { EEquipmentActions } from "../../stores/actions/equipment-actions/constants";
@@ -32,6 +33,7 @@ import UserColumn from "./request-columns/UserColumn";
 import ActionColumn from "./category-columns/ActionColumn";
 import { ICategory } from "../../interfaces/category-interface";
 import RequestActionColumn from "./request-columns/RequestActionColumn";
+import { historyTransferEquipment } from "../../services/equipment-service";
 
 interface IOwnerEquipmentProps {
   userId: number;
@@ -152,6 +154,12 @@ const EquipmentActionColumn = ({
     dispatch(updateEquipmentAction(values, handleGetEquipments));
   };
 
+  const handleClickHistory = () => {
+    handleClose();
+    setIsOpenHistoryModal(true);
+    dispatch(historyTransferEquipmentAction(equipment.id));
+  };
+
   return (
     <div className="EquipmentCard__menu">
       <MoreVertIcon onClick={(e) => handleClick(e)} />
@@ -172,14 +180,7 @@ const EquipmentActionColumn = ({
         >
           Update
         </MenuItem>
-        <MenuItem
-          onClick={() => {
-            handleClose();
-            setIsOpenHistoryModal(true);
-          }}
-        >
-          History
-        </MenuItem>
+        <MenuItem onClick={handleClickHistory}>History</MenuItem>
       </Menu>
       <EquipmentModal
         isOpenModal={isOpenUpdateModal}

@@ -7,6 +7,7 @@ import {
   createEquipment,
   deleteEquipment,
   getEquipment,
+  historyTransferEquipment,
   updateEquipment,
 } from "../../services/equipment-service";
 import { toastError, toastSuccess } from "../../utils/notifications-utils";
@@ -17,6 +18,9 @@ import {
   deleteEquipmentFailureAction,
   deleteEquipmentRequestAction,
   deleteEquipmentSuccessAction,
+  historyTransferEquipmentFailureAction,
+  historyTransferEquipmentRequestAction,
+  historyTransferEquipmentSuccessAction,
   updateEquipmentFailureAction,
   updateEquipmentRequestAction,
   updateEquipmentSuccessAction,
@@ -26,6 +30,7 @@ import {
   TCreateEquipmentAction,
   TDeleteEquipmentAction,
   TGetEquipmentAction,
+  THistoryTransferEquipmentAction,
   TUpdateEquipmentAction,
 } from "../actions/equipment-actions/types";
 import {
@@ -33,6 +38,7 @@ import {
   getEquipmentRequestAction,
   getEquipmentSuccessAction,
 } from "./../actions/equipment-actions/index";
+import { IUserDetail } from "../../interfaces/user-interfaces";
 
 function* createEquipmentSaga({ payload, cb }: TCreateEquipmentAction) {
   try {
@@ -94,6 +100,24 @@ function* deleteEquipmentSaga({ payload, cb }: TDeleteEquipmentAction) {
     (error as Error).message
       ? toastError((error as Error).message)
       : toastError("Delete equipment failure!!");
+  }
+}
+
+function* histtoryTransferEquipmentSaga({
+  payload,
+}: THistoryTransferEquipmentAction) {
+  try {
+    yield put(historyTransferEquipmentRequestAction());
+    const response: IUserDetail[] = yield call(
+      historyTransferEquipment,
+      payload
+    );
+    yield put(historyTransferEquipmentSuccessAction(response));
+  } catch (error: any) {
+    yield put(historyTransferEquipmentFailureAction(error));
+    (error as Error).message
+      ? toastError((error as Error).message)
+      : toastError("historyTransfer equipment failure!!");
   }
 }
 

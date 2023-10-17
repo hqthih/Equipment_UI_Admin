@@ -23,3 +23,8 @@ export type TDeleteEquipmentAction = {
   payload: number[];
   cb?: () => void;
 };
+
+export type THistoryTransferEquipmentAction = {
+  type: EEquipmentActions.HISTORY_TRANSFER_EQUIPMENT;
+  payload: number;
+};
