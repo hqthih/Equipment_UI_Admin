@@ -103,7 +103,7 @@ function* deleteEquipmentSaga({ payload, cb }: TDeleteEquipmentAction) {
   }
 }
 
-function* histtoryTransferEquipmentSaga({
+function* historyTransferEquipmentSaga({
   payload,
 }: THistoryTransferEquipmentAction) {
   try {
@@ -126,6 +126,10 @@ function* watchOnAuth() {
   yield takeLatest(EEquipmentActions.GET_EQUIPMENT, getEquipmentSaga);
   yield takeLatest(EEquipmentActions.UPDATE_EQUIPMENT, updateEquipmentSaga);
   yield takeLatest(EEquipmentActions.DELETE_EQUIPMENT, deleteEquipmentSaga);
+  yield takeLatest(
+    EEquipmentActions.HISTORY_TRANSFER_EQUIPMENT,
+    historyTransferEquipmentSaga
+  );
 }
 
 export default function* equipmentSaga() {

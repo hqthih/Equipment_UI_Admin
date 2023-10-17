@@ -32,7 +32,7 @@ const equipmentReducer = (
         totalPages: action.payload.totalPages,
         last: action.payload.last,
       };
-    case EEquipmentActions.HISTORY_TRANSFER_EQUIPMENT:
+    case EEquipmentActions.HISTORY_TRANSFER_EQUIPMENT_SUCCESS:
       return {
         ...state,
         historyTableData: action.payload,
