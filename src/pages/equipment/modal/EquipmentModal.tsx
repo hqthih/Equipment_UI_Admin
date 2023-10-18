@@ -3,7 +3,7 @@ import { Button, MenuItem } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import { ErrorMessage, Form, Formik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import Modal from "../../../components/modal/Modal";
@@ -11,6 +11,7 @@ import {
   EEquipmentModalType,
   IEquipmentDetail,
 } from "../../../interfaces/equipment-interface";
+import { getCategory } from "../../../stores/actions/category-actions";
 import { TRootState } from "../../../stores/reducers";
 import "./EquipmentModal.scss";
 
@@ -72,6 +73,10 @@ const EquipmentModal = ({
     handleCloseModal();
     actions.resetForm();
   };
+
+  useEffect(() => {
+    dispatch(getCategory());
+  }, []);
 
   return (
     <Modal
